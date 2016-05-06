@@ -5,9 +5,8 @@
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
 	var bind = require('simple-function-utils/bind').begin;
 	var boolean = require('simple-function-utils/boolean');
-	var createClass = require('x-iterable-base/template');
+	var {XIterable, Root} = require('x-iterable-base');
 	var isIterable = require('x-iterable-utils/is-iterable');
-	var Root = require('x-iterable-base/root').class;
 
 	const EMPTY_ITERABLE = require('x-iterable-utils/empty-iterable.js');
 
@@ -15,7 +14,7 @@
 
 	var {assign} = Object;
 
-	class PureDeepIterable extends createClass(Root) {
+	class PureDeepIterable extends XIterable(Root) {
 
 		constructor(base, deeper, shallower, preprocess) {
 			super();
@@ -86,7 +85,7 @@
 	DeepIterable.DEFAULT_SHALLOWER = () => {};
 	DeepIterable.DEFAULT_PREPROCESS = (x) => x;
 
-	DeepIterable.Circular = createClass(class extends Root {
+	DeepIterable.Circular = XIterable(class extends Root {
 
 		constructor(base, deeper = DeepIterable.DEFAULT_DEEPER, equal = Object.is, circular = DeepIterable.DEFAULT_CIRCULAR_HANDLER) {
 			super();
