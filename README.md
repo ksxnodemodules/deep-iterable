@@ -68,21 +68,54 @@ iterable.runthrough(); // You would seen many entering/escaping logs
 ### Plus a sub-iterables/elements creator: `preprocess`
 
 ```javascript
+
 var universe = {
-    Chaos: ['Tartarus', 'Gaia', 'Eros', 'Erebus', 'Nyx'],
-    Tartarus: ['Typhon'],
-    Gaia: ['Uranus', 'Ourea', 'Pontus'],
-    Erebus: ['Aether', 'Hemera'],
-    Nyx: ['Aether', 'Hemera', 'Moros', 'Oneiroi', 'Nemesis', 'Thanatos', 'Hypnos'],
-    Uranus: ['Aphrodite', 'Cyclopes', 'Echidna', 'Cronus', 'Rhea'],
-    Cronus: ['Zeus', 'Hera', 'Poseidon', 'Hestia', 'Hades', 'Demeter'],
-    Zeus: ['Apollo', 'Artemis', 'Athena', 'Ares', 'Hephaestus']
+    Chaos: {
+        Tartarus: {
+            Typhon: {}
+        },
+        Gaia: {
+            Uranus: {
+                Aphrodite: {},
+                Cyclopes: {},
+                Cronus: {
+                    Zeus: {
+                        Appollo: {},
+                        Artemis: {},
+                        Athena: {},
+                        Ares: {},
+                        Hephaestus: {}
+                    },
+                    Hera: {
+                        Ares: {},
+                        Hephaestus: {}
+                    },
+                    Poseidon: {},
+                    Hestia: {},
+                    Hades: {},
+                    Demeter: {}
+                },
+                Rhea: {}
+            },
+            Ourea: {},
+            Pontus: {}
+        }
+    }
 };
-var deeper = ({admit}) => !admit;
-var preprocess = (name) => {
-    var iterable = universe[name] || '';
-    return [{name, admit: true}, ...iterable];
+
+var deeper = (iterable) =>
+    typeof iterable !== 'string';
+
+var preprocess = (object) => {
+    if (typeof object === 'string') {
+        return object;
+    }
+    var first = Object.getOwnPropertyNames(object);
+    var second = first.map((pname) => object[pname]);
+    return [...first, ...second];
 };
-var iterable = new DeepIterable(['Chaos'], deeper, undefined, preprocess).map(({name}) => name);
+
+var iterable = new DeepIterable(universe, deeper, undefined, preprocess);
 console.log([...iterable]); // You would seen all the names listed above
+
 ```
