@@ -55,10 +55,6 @@
 			return new DeepIterable.Circular(this.base, this.deeper, equal);
 		}
 
-		static createXIterableClass(Base, deeper) {
-			return createClassFromSuper(DeepIterable, (...args) => [new Base(...args), deeper]);
-		}
-
 		static ANY_DEEPER(iterable) {
 			return true;
 		}
