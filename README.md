@@ -22,7 +22,7 @@ Where:
 
  * `DeepIterable` is a ECMAScript 6 class
 
- * `base` is an [iterable](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols) object
+ * `base` is either the first argument of `preprocess` or an [iterable](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Iteration_protocols) object
 
  * `deeper` (optional) is a function which determines should the iteration process goes deeper
 
