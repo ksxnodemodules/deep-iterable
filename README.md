@@ -39,7 +39,7 @@ Where:
 ```javascript
 var tree = [['abc', 'def'], 'ghi', new Set(['jkl', ['mno']]), 'pqrs', ...'tuv', [...'wxyz']];
 var iterable = new DeepIterable(tree);
-console.log([...iterable]); // You would seen an array of alphabet
+console.log([...iterable]); // You would seen an array of alphabet-subsequences
 ```
 
 ### Plus a deep determiner: `deeper`
@@ -57,7 +57,7 @@ console.log([...iterable]); // You would seen an array of ECMAScript Set objects
 var tree = [['abc', 'def'], 'ghi', new Set(['jkl', ['mno']]), 'pqrs', ...'tuv', [...'wxyz']];
 var deeper = (child, parent) => {
     console.log(`Entering to [${child}] from [${parent}]`);
-    return true;
+    return typeof child !== 'string' || child.length > 1; // You don't want an infinite iteration, right?
 };
 var shallower = (child, parent) =>
     console.log(`Escaping from [${child}] to [${parent}]`);
