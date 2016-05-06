@@ -13,21 +13,18 @@
 
 	var _key_iterator = Symbol.iterator;
 
+	var {assign} = Object;
+
 	class PureDeepIterable extends createClass(Root) {
 
 		constructor(base, deeper, shallower, preprocess) {
 			super();
-			this.base = base;
-			this.deeper = deeper;
-			this.shallower = shallower;
-			this.preprocess = preprocess;
+			assign(this, {base, deeper, shallower, preprocess});
 		}
 
 		* [_key_iterator]() {
-			var deeper = this.deeper;
-			var shallower = this.shallower;
-			var preprocess = this.preprocess;
-			var iterable = preprocess(this.base, this);
+			var {deeper, shallower, preprocess, base} = this;
+			var iterable = preprocess(base, this);
 			if (deeper(iterable, this)) {
 				for (let element of iterable) {
 					yield * new PureDeepIterable(element, deeper, shallower, preprocess);
@@ -53,6 +50,10 @@
 
 		circular(equal) {
 			return new DeepIterable.Circular(this.base, this.deeper, equal);
+		}
+
+		static fromDescriptor({base, deeper, shallower, preprocess}) {
+			return new DeepIterable(base, deeper, shallower, preprocess);
 		}
 
 		static ANY_DEEPER(iterable) {
