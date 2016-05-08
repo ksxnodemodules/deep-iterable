@@ -4,7 +4,7 @@
 
 	var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs;
 	var bind = require('simple-function-utils/bind').begin;
-	var boolean = require('simple-function-utils/boolean');
+	var {and} = require('simple-function-utils/boolean');
 	var {XIterable, Root} = require('x-iterable-base');
 	var isIterable = require('x-iterable-utils/is-iterable');
 
@@ -18,7 +18,10 @@
 
 		constructor(base, deeper, shallower, preprocess) {
 			super();
-			assign(this, {base, deeper, shallower, preprocess});
+			return {
+				base, deeper, shallower, preprocess,
+				__proto__: this
+			};
 		}
 
 		* [_key_iterator]() {
@@ -44,7 +47,7 @@
 			shallower = DeepIterable.DEFAULT_SHALLOWER,
 			preprocess = DeepIterable.DEFAULT_PREPROCESS
 		) {
-			super(base, boolean.and(isIterable, deeper), shallower, preprocess);
+			super(base, and(isIterable, deeper), shallower, preprocess);
 		}
 
 		circular(equal) {
