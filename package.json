@@ -1,34 +1,34 @@
 {
-	"name": "deep-iterable",
-	"description": "Traverse at the lowest level of iterables",
-	"version": "1.0.1",
-	"author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
-	"contributors": [
-		"Hoàng Văn Khải <hvksmr1996@gmail.com>"
-	],
-	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ksxnodemodules/deep-iterable.git"
-	},
-	"engines": {
-		"node": ">=6.0.0"
-	},
-	"dependencies": {
-		"x-iterable-utils": "ksxnodemodules/x-iterable-utils#v0.0.0",
-		"x-iterable-base": ">=1.0.2 <2.0.0",
-		"simple-class-utils": ">=0.0.4 <2.0.0",
-		"simple-function-utils": ">=2.1.2 <3.0.0"
-	},
-	"main": "index.js",
-	"keywords": [
-		"traverse-iterator",
-		"deep-iterable",
-		"deep-iterator",
-		"spread-iterator"
-	],
-	"bugs": {
-		"url": "https://github.com/ksxnodemodules/deep-iterable/issues"
-	},
-	"homepage": "https://github.com/ksxnodemodules/deep-iterable#readme"
+  "name": "deep-iterable",
+  "description": "Traverse at the lowest level of iterables",
+  "version": "2.0.0",
+  "author": "Hoàng Văn Khải <hvksmr1996@gmail.com>",
+  "contributors": [
+    "Hoàng Văn Khải <hvksmr1996@gmail.com>"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ksxnodemodules/deep-iterable.git"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "x-iterable-utils": "ksxnodemodules/x-iterable-utils#v0.0.0",
+    "x-iterable-base": "^3.0.1",
+    "simple-class-utils": ">=0.0.4 <2.0.0",
+    "simple-function-utils": ">=2.1.2 <3.0.0"
+  },
+  "main": "index.js",
+  "keywords": [
+    "traverse-iterator",
+    "deep-iterable",
+    "deep-iterator",
+    "spread-iterator"
+  ],
+  "bugs": {
+    "url": "https://github.com/ksxnodemodules/deep-iterable/issues"
+  },
+  "homepage": "https://github.com/ksxnodemodules/deep-iterable#readme"
 }
