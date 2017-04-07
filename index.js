@@ -2,13 +2,13 @@
 ((module) => {
   'use strict'
 
-  var bind = require('simple-function-utils/bind').begin
-  var {and} = require('simple-function-utils/boolean')
-  var {XIterable, Root} = require('x-iterable-base')
-  var isIterable = require('x-iterable-utils/is-iterable')
+  const bind = require('simple-function-utils/bind').begin
+  const {and} = require('simple-function-utils/boolean')
+  const {XIterable, Root} = require('x-iterable-base')
+  const isIterable = require('x-iterable-utils/is-iterable')
   const EMPTY_ITERABLE = require('x-iterable-utils/empty-iterable.js')
-  var {iterator} = Symbol
-  var {assign} = Object
+  const {iterator} = Symbol
+  const {assign} = Object
 
   class PureDeepIterable extends XIterable(Root) {
     constructor (base, deeper, shallower, preprocess) {
@@ -23,8 +23,8 @@
     }
 
     * [iterator] () {
-      var {deeper, shallower, preprocess, base} = this
-      var iterable = preprocess(base, this)
+      const {deeper, shallower, preprocess, base} = this
+      const iterable = preprocess(base, this)
       if (deeper(iterable, this)) {
         for (let element of iterable) {
           yield * new PureDeepIterable(element, deeper, shallower, preprocess)
@@ -90,8 +90,8 @@
     }
 
     [iterator] () {
-      var history = []
-      var {base, deeper, equal, circular} = this
+      const history = []
+      const {base, deeper, equal, circular} = this
 
       return new DeepIterable(
 				base,
