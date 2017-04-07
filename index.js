@@ -2,7 +2,6 @@
 ((module) => {
   'use strict'
 
-  var createClassFromSuper = require('simple-class-utils').createClass.super.handleArgs
   var bind = require('simple-function-utils/bind').begin
   var {and} = require('simple-function-utils/boolean')
   var {XIterable, Root} = require('x-iterable-base')
