@@ -6,11 +6,8 @@
   var {and} = require('simple-function-utils/boolean')
   var {XIterable, Root} = require('x-iterable-base')
   var isIterable = require('x-iterable-utils/is-iterable')
-
   const EMPTY_ITERABLE = require('x-iterable-utils/empty-iterable.js')
-
   var {iterator} = Symbol
-
   var {assign} = Object
 
   class PureDeepIterable extends XIterable(Root) {
