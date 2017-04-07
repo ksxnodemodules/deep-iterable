@@ -9,7 +9,7 @@
 
   const EMPTY_ITERABLE = require('x-iterable-utils/empty-iterable.js')
 
-  var _key_iterator = Symbol.iterator
+  var iterator = Symbol.iterator
 
   var {assign} = Object
 
@@ -25,7 +25,7 @@
       }
     }
 
-    * [_key_iterator] () {
+    * [iterator] () {
       var {deeper, shallower, preprocess, base} = this
       var iterable = preprocess(base, this)
       if (deeper(iterable, this)) {
@@ -92,7 +92,7 @@
       Object.assign(this, {base, deeper, equal, circular})
     }
 
-    [_key_iterator] () {
+    [iterator] () {
       var history = []
       var {base, deeper, equal, circular} = this
 
@@ -105,7 +105,7 @@
 				(iterable, ...args) =>
 					history.some(bind(equal, iterable))
 						? circular(iterable, ...args) || EMPTY_ITERABLE : iterable
-			)[_key_iterator]()
+			)[iterator]()
     }
 
     static DEFAULT_CIRCULAR_HANDLER () {}
