@@ -9,7 +9,7 @@
 
   const EMPTY_ITERABLE = require('x-iterable-utils/empty-iterable.js')
 
-  var iterator = Symbol.iterator
+  var {iterator} = Symbol
 
   var {assign} = Object
 
