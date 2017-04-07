@@ -8,7 +8,6 @@
   const isIterable = require('x-iterable-utils/is-iterable')
   const EMPTY_ITERABLE = require('x-iterable-utils/empty-iterable.js')
   const {iterator} = Symbol
-  const {assign} = Object
 
   class PureDeepIterable extends XIterable(Root) {
     constructor (base, deeper, shallower, preprocess) {
@@ -34,15 +33,15 @@
         yield iterable
       }
     }
-	}
+  }
 
   class DeepIterable extends PureDeepIterable {
     constructor (
-			base,
-			deeper = DeepIterable.DEFAULT_DEEPER,
-			shallower = DeepIterable.DEFAULT_SHALLOWER,
-			preprocess = DeepIterable.DEFAULT_PREPROCESS
-		) {
+      base,
+      deeper = DeepIterable.DEFAULT_DEEPER,
+      shallower = DeepIterable.DEFAULT_SHALLOWER,
+      preprocess = DeepIterable.DEFAULT_PREPROCESS
+    ) {
       super(base, and(isIterable, deeper), shallower, preprocess)
     }
 
@@ -73,7 +72,7 @@
     static LENGTHINESS_DEEPER (lengthiness) {
       return lengthiness.length > 1
     }
-	}
+  }
 
   module.exports = class extends DeepIterable {}
 
@@ -94,17 +93,17 @@
       const {base, deeper, equal, circular} = this
 
       return new DeepIterable(
-				base,
-				(iterable, ...args) =>
-					deeper(iterable, ...args) && history.push(iterable),
-				() =>
-					history.pop(),
-				(iterable, ...args) =>
-					history.some(bind(equal, iterable))
-						? circular(iterable, ...args) || EMPTY_ITERABLE : iterable
-			)[iterator]()
+        base,
+        (iterable, ...args) =>
+          deeper(iterable, ...args) && history.push(iterable),
+        () =>
+          history.pop(),
+        (iterable, ...args) =>
+          history.some(bind(equal, iterable))
+            ? circular(iterable, ...args) || EMPTY_ITERABLE : iterable
+      )[iterator]()
     }
 
     static DEFAULT_CIRCULAR_HANDLER () {}
-	})
+  })
 })(module)
